@@ -21,6 +21,7 @@ curl http://<ip>:<port>/rpc/v1 -X POST -H "Content-Type: application/json"  -H "
   * [DagstoreInitializeStorage](#dagstoreinitializestorage)
   * [DagstoreListShards](#dagstorelistshards)
   * [DagstoreRecoverShard](#dagstorerecovershard)
+  * [DealsBatchImportData](#dealsbatchimportdata)
   * [DealsConsiderOfflineRetrievalDeals](#dealsconsiderofflineretrievaldeals)
   * [DealsConsiderOfflineStorageDeals](#dealsconsiderofflinestoragedeals)
   * [DealsConsiderOnlineRetrievalDeals](#dealsconsideronlineretrievaldeals)
@@ -60,7 +61,6 @@ curl http://<ip>:<port>/rpc/v1 -X POST -H "Content-Type: application/json"  -H "
   * [MarketGetDealUpdates](#marketgetdealupdates)
   * [MarketGetReserved](#marketgetreserved)
   * [MarketGetRetrievalAsk](#marketgetretrievalask)
-  * [MarketImportDealData](#marketimportdealdata)
   * [MarketImportPublishedDeal](#marketimportpublisheddeal)
   * [MarketListDataTransfers](#marketlistdatatransfers)
   * [MarketListDeals](#marketlistdeals)
@@ -421,6 +421,37 @@ Inputs:
 ```
 
 Response: `{}`
+
+### DealsBatchImportData
+
+
+Perms: admin
+
+Inputs:
+```json
+[
+  [
+    {
+      "ProposalCid": {
+        "/": "bafy2bzacea3wsdh6y3a36tb3skempjoxqpuyompjbmfeyf34fi3uy6uue42v4"
+      },
+      "File": "string value"
+    }
+  ]
+]
+```
+
+Response:
+```json
+[
+  {
+    "ProposalCid": {
+      "/": "bafy2bzacea3wsdh6y3a36tb3skempjoxqpuyompjbmfeyf34fi3uy6uue42v4"
+    },
+    "Message": "string value"
+  }
+]
+```
 
 ### DealsConsiderOfflineRetrievalDeals
 
@@ -1245,23 +1276,6 @@ Response:
   "PaymentIntervalIncrease": 42
 }
 ```
-
-### MarketImportDealData
-
-
-Perms: admin
-
-Inputs:
-```json
-[
-  {
-    "/": "bafy2bzacea3wsdh6y3a36tb3skempjoxqpuyompjbmfeyf34fi3uy6uue42v4"
-  },
-  "string value"
-]
-```
-
-Response: `{}`
 
 ### MarketImportPublishedDeal
 

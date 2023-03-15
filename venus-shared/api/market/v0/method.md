@@ -60,7 +60,6 @@ curl http://<ip>:<port>/rpc/v0 -X POST -H "Content-Type: application/json"  -H "
   * [MarketGetDealUpdates](#marketgetdealupdates)
   * [MarketGetReserved](#marketgetreserved)
   * [MarketGetRetrievalAsk](#marketgetretrievalask)
-  * [MarketImportDealData](#marketimportdealdata)
   * [MarketImportPublishedDeal](#marketimportpublisheddeal)
   * [MarketListDataTransfers](#marketlistdatatransfers)
   * [MarketListDeals](#marketlistdeals)
@@ -1245,23 +1244,6 @@ Response:
   "PaymentIntervalIncrease": 42
 }
 ```
-
-### MarketImportDealData
-
-
-Perms: admin
-
-Inputs:
-```json
-[
-  {
-    "/": "bafy2bzacea3wsdh6y3a36tb3skempjoxqpuyompjbmfeyf34fi3uy6uue42v4"
-  },
-  "string value"
-]
-```
-
-Response: `{}`
 
 ### MarketImportPublishedDeal
 

@@ -823,20 +823,6 @@ func (mr *MockIMarketMockRecorder) MarketGetRetrievalAsk(arg0, arg1 interface{})
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "MarketGetRetrievalAsk", reflect.TypeOf((*MockIMarket)(nil).MarketGetRetrievalAsk), arg0, arg1)
 }
 
-// MarketImportDealData mocks base method.
-func (m *MockIMarket) MarketImportDealData(arg0 context.Context, arg1 cid.Cid, arg2 string) error {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "MarketImportDealData", arg0, arg1, arg2)
-	ret0, _ := ret[0].(error)
-	return ret0
-}
-
-// MarketImportDealData indicates an expected call of MarketImportDealData.
-func (mr *MockIMarketMockRecorder) MarketImportDealData(arg0, arg1, arg2 interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "MarketImportDealData", reflect.TypeOf((*MockIMarket)(nil).MarketImportDealData), arg0, arg1, arg2)
-}
-
 // MarketImportPublishedDeal mocks base method.
 func (m *MockIMarket) MarketImportPublishedDeal(arg0 context.Context, arg1 market.MinerDeal) error {
 	m.ctrl.T.Helper()

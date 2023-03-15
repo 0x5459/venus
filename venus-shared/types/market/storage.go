@@ -108,3 +108,14 @@ func (sa *SignedStorageAsk) ToChainAsk() *storagemarket.SignedStorageAsk {
 		Signature: sa.Signature,
 	}
 }
+
+type ImportDataRef struct {
+	ProposalCid cid.Cid
+	File        string
+}
+
+type ImportDataResult struct {
+	ProposalCid cid.Cid
+	// deal import failed
+	Message string
+}

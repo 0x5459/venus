@@ -36,6 +36,7 @@ type IMarketStruct struct {
 		DagstoreInitializeStorage               func(context.Context, string, market.DagstoreInitializeAllParams) (<-chan market.DagstoreInitializeAllEvent, error)                                                                                 `perm:"admin"`
 		DagstoreListShards                      func(ctx context.Context) ([]market.DagstoreShardInfo, error)                                                                                                                                       `perm:"admin"`
 		DagstoreRecoverShard                    func(ctx context.Context, key string) error                                                                                                                                                         `perm:"admin"`
+		DealsBatchImportData                    func(ctx context.Context, refs []*market.ImportDataRef) ([]*market.ImportDataResult, error)                                                                                                         `perm:"admin"`
 		DealsConsiderOfflineRetrievalDeals      func(context.Context, address.Address) (bool, error)                                                                                                                                                `perm:"read"`
 		DealsConsiderOfflineStorageDeals        func(context.Context, address.Address) (bool, error)                                                                                                                                                `perm:"read"`
 		DealsConsiderOnlineRetrievalDeals       func(context.Context, address.Address) (bool, error)                                                                                                                                                `perm:"read"`
@@ -75,7 +76,6 @@ type IMarketStruct struct {
 		MarketGetDealUpdates                    func(ctx context.Context) (<-chan market.MinerDeal, error)                                                                                                                                          `perm:"admin"`
 		MarketGetReserved                       func(ctx context.Context, addr address.Address) (types.BigInt, error)                                                                                                                               `perm:"sign"`
 		MarketGetRetrievalAsk                   func(ctx context.Context, mAddr address.Address) (*retrievalmarket.Ask, error)                                                                                                                      `perm:"read"`
-		MarketImportDealData                    func(ctx context.Context, propcid cid.Cid, path string) error                                                                                                                                       `perm:"admin"`
 		MarketImportPublishedDeal               func(ctx context.Context, deal market.MinerDeal) error                                                                                                                                              `perm:"write"`
 		MarketListDataTransfers                 func(ctx context.Context) ([]market.DataTransferChannel, error)                                                                                                                                     `perm:"admin"`
 		MarketListDeals                         func(ctx context.Context, addrs []address.Address) ([]*types.MarketDeal, error)                                                                                                                     `perm:"read"`
@@ -158,6 +158,9 @@ func (s *IMarketStruct) DagstoreListShards(p0 context.Context) ([]market.Dagstor
 }
 func (s *IMarketStruct) DagstoreRecoverShard(p0 context.Context, p1 string) error {
 	return s.Internal.DagstoreRecoverShard(p0, p1)
+}
+func (s *IMarketStruct) DealsBatchImportData(p0 context.Context, p1 []*market.ImportDataRef) ([]*market.ImportDataResult, error) {
+	return s.Internal.DealsBatchImportData(p0, p1)
 }
 func (s *IMarketStruct) DealsConsiderOfflineRetrievalDeals(p0 context.Context, p1 address.Address) (bool, error) {
 	return s.Internal.DealsConsiderOfflineRetrievalDeals(p0, p1)
@@ -273,9 +276,6 @@ func (s *IMarketStruct) MarketGetReserved(p0 context.Context, p1 address.Address
 }
 func (s *IMarketStruct) MarketGetRetrievalAsk(p0 context.Context, p1 address.Address) (*retrievalmarket.Ask, error) {
 	return s.Internal.MarketGetRetrievalAsk(p0, p1)
-}
-func (s *IMarketStruct) MarketImportDealData(p0 context.Context, p1 cid.Cid, p2 string) error {
-	return s.Internal.MarketImportDealData(p0, p1, p2)
 }
 func (s *IMarketStruct) MarketImportPublishedDeal(p0 context.Context, p1 market.MinerDeal) error {
 	return s.Internal.MarketImportPublishedDeal(p0, p1)

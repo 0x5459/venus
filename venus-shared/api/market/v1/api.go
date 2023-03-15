@@ -28,7 +28,6 @@ type IMarket interface {
 	ActorExist(ctx context.Context, addr address.Address) (bool, error)       //perm:read
 	ActorSectorSize(context.Context, address.Address) (abi.SectorSize, error) //perm:read
 
-	MarketImportDealData(ctx context.Context, propcid cid.Cid, path string) error                                                                                                                               //perm:admin
 	MarketImportPublishedDeal(ctx context.Context, deal market.MinerDeal) error                                                                                                                                 //perm:write
 	MarketListDeals(ctx context.Context, addrs []address.Address) ([]*types.MarketDeal, error)                                                                                                                  //perm:read
 	MarketListRetrievalDeals(ctx context.Context) ([]market.ProviderDealState, error)                                                                                                                           //perm:read
@@ -54,8 +53,9 @@ type IMarket interface {
 	PiecesGetPieceInfo(ctx context.Context, pieceCid cid.Cid) (*piecestore.PieceInfo, error) //perm:read
 	PiecesGetCIDInfo(ctx context.Context, payloadCid cid.Cid) (*piecestore.CIDInfo, error)   //perm:read
 
-	DealsImportData(ctx context.Context, dealPropCid cid.Cid, file string) error //perm:admin
-	OfflineDealImport(ctx context.Context, deal market.MinerDeal) error          //perm:admin
+	DealsImportData(ctx context.Context, dealPropCid cid.Cid, file string) error                                //perm:admin
+	OfflineDealImport(ctx context.Context, deal market.MinerDeal) error                                         //perm:admin
+	DealsBatchImportData(ctx context.Context, refs []*market.ImportDataRef) ([]*market.ImportDataResult, error) //perm:admin
 
 	DealsConsiderOnlineStorageDeals(context.Context, address.Address) (bool, error)      //perm:read
 	DealsSetConsiderOnlineStorageDeals(context.Context, address.Address, bool) error     //perm:write
