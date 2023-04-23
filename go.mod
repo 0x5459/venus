@@ -324,7 +324,7 @@ require (
 )
 
 replace (
-	github.com/filecoin-project/filecoin-ffi => ./extern/filecoin-ffi
+	github.com/filecoin-project/filecoin-ffi => github.com/0x5459/filecoin-ffi v1.21.0-rc.1.0.20230423102949-74a1f299169f
 	github.com/filecoin-project/go-jsonrpc => github.com/ipfs-force-community/go-jsonrpc v0.1.7
 	github.com/filecoin-project/test-vectors => ./extern/test-vectors
 )
